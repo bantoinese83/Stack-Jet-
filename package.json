@@ -1,0 +1,55 @@
+{
+  "name": "nexusforge-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo for NexusForge: unified backend and frontend with root lint/format scripts.",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "dev:frontend": "npm --workspace frontend run dev",
+    "dev:backend": "npm --workspace backend run dev",
+    "dev:all": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "setup:envs": "bash setup_envs.sh",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "type-check": "tsc --noEmit",
+    "test": "jest",
+    "build": "tsc -b backend frontend",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/js": "^9.31.0",
+    "concurrently": "^9.2.0",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.5.3",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^16.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.2",
+    "prettier-plugin-css-order": "^2.1.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0"
+  },
+  "lint-staged": {
+    "backend/src/**/*.{js,jsx,ts,tsx}": [
+      "npm run lint:fix",
+      "npm run format"
+    ],
+    "frontend/src/**/*.{js,jsx,ts,tsx}": [
+      "npm run lint:fix",
+      "npm run format"
+    ]
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
+}

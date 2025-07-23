@@ -1,0 +1,5 @@
+{
+  "entryPoints": ["backend/src/index.ts", "frontend/src/main.tsx"],
+  "out": "docs/api",
+  "tsconfig": "tsconfig.json"
+}
